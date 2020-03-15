@@ -23,25 +23,36 @@ class Language
 		return $this->defaultLang;
 	}
 
+
+	/**
+	 * @param string|null $currentLang
+	 */
+	public function setCurrentLang($currentLang)
+	{
+
+		$cookie = new Cookie($_COOKIE);
+		$this->currentLang = $currentLang;
+
+		$cookie->forever('lang', $currentLang);
+	}
+
 	/**
 	 * Language constructor.
 	 */
 	public function __construct()
 	{
-		global $loader,$config;
+		global $loader, $config, $app;
+		$cookie = new Cookie($_COOKIE);
 		$this->defaultLang = $config->get('defaultLang');
-		$cookie = new Cookie();
-		if($cookie->exists('lang')){
-			$this->currentLang = $cookie->get('lang');
-			require $loader->lang($this->currentLang);
-		}else{
-			$cookie->forever('lang', (string)$this->defaultLang);
-			require $loader->lang($cookie->get('lang'));
-		}
+		$this->setCurrentLang($app->detectLang($this));
+		require (file_exists($loader->lang($this->currentLang))) ? $loader->lang($this->currentLang) : $loader->lang($this->getDefaultLang());
+
 	}
 
-	public function __($str){
-		return isset($GLOBALS['language'][$str])?$GLOBALS['language'][$str]:$str;
+	public function __($str)
+	{
+		return isset($GLOBALS['language'][$str]) ? $GLOBALS['language'][$str] : $str;
 	}
+
 
 }

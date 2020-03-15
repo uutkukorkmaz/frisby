@@ -53,11 +53,26 @@ class Core
 		header('location:' . $location);
 	}
 
+	/**
+	 * @param string $href
+	 * @return string
+	 */
 	public function go($href = '')
 	{
 		global $config;
 		$href = substr($href, 0, 1) == '/' ? $href : '/' . $href;
 		return $config->get('domain') . $href;
+	}
+
+	/**
+	 * @param Language $langObj
+	 * @return mixed|string|null
+	 */
+	public function detectLang(Language $langObj)
+	{
+		$cookie = new Cookie($_COOKIE);
+
+		return (isset($this->route->url[1])) ? $this->route->url[1] : ($cookie->exists('lang') ? $cookie->get('lang') : $langObj->getDefaultLang());
 	}
 
 }
