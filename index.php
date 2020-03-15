@@ -7,18 +7,7 @@ $app = new Core('development');
 $lang = new Language();
 $db = new Database(['dbname'=>'jig']);
 $cookie = new \FrisbyModule\Frisby\Cookie($_COOKIE);
-
+require 'lib/Routes.php';
 
 
 //print_r($db->query("SELECT * FROM options WHERE name=:opt",[':opt'=>'domain'],'fetch'));
-$app->route->pattern(':test',['numeric'=>true]);
-
-$app->route->add('/','IndexController');
-
-$app->route->add('/test',function (){
-	echo 'test amk';
-});
-$app->route->add('/deneme',function (){
-	echo 'deneme deneme';
-});
-

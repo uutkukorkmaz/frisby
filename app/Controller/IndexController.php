@@ -4,8 +4,13 @@ namespace FrisbyApp\Controller;
 
 
 use FrisbyApp\Model\IndexModel;
+use FrisbyModule\Frisby\ControllerInterface;
 
-class IndexController
+/**
+ * Class IndexController
+ * @package FrisbyApp\Controller
+ */
+class IndexController implements ControllerInterface
 {
 
 
@@ -25,10 +30,7 @@ class IndexController
 		// If there is no defined method in routing, Frisby will try to execute this method after __construct()
 	}
 
-	public function __destruct()
-	{
-		//echo 'index footer';
-	}
+
 
 
 }
