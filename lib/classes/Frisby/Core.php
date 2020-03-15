@@ -75,4 +75,14 @@ class Core
 		return (isset($this->route->url[1])) ? $this->route->url[1] : ($cookie->exists('lang') ? $cookie->get('lang') : $langObj->getDefaultLang());
 	}
 
+	public function img($file){
+		return $this->go('assets/img/'.$file);
+	}
+	public function css($file){
+		return $this->go('assets/css/'.$file);
+	}
+	public function js($file){
+		return $this->go('assets/js/'.$file);
+	}
+
 }
