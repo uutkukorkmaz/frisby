@@ -65,6 +65,7 @@ class Route
 		$basename = basename($_SERVER['SCRIPT_NAME']);
 		$this->currentRoute = isset($_GET['route']) ? '/' . $_GET['route'] : str_replace([$directory, $basename], null, explode('?', $_SERVER['REQUEST_URI'])[0]);
 		unset($_GET['route']);
+		$this->url = array_filter(explode('/', rtrim($this->currentRoute)));
 		$this->query = count($_GET) ? '?' . http_build_query($_GET) : null;
 	}
 
@@ -83,7 +84,7 @@ class Route
 			if (preg_match('@^' . $route . '$@', $this->currentRoute, $params)) {
 				//$this->validRoutes[] = $route;
 				//if (in_array($this->currentRoute,$this->validRoutes)) {
-				$this->url = array_filter(explode('/', rtrim($this->currentRoute)));
+
 				$this->routes[$route] = $callback;
 				$this->__renderPage($route, $params);
 				//}else{
