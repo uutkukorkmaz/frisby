@@ -4,11 +4,20 @@
 namespace FrisbyModule\Frisby;
 
 
+/**
+ * Class Loader
+ * @package FrisbyModule\Frisby
+ */
 class Loader
 {
 	private $classMap;
 	public $loadClasses=[];
 
+
+	const IMAGE = '/assets/img/';
+	const STYLE = '/assets/css/';
+	const FONT = '/assets/fonts/';
+	const SCRIPT = '/assets/js/';
 	/**
 	 * Loader constructor.
 	 * @param null $file
@@ -69,5 +78,11 @@ class Loader
 		}else{
 			return false;
 		}
+	}
+
+	public function asset($assetType,$fileName){
+		$file = realpath('.').$assetType.$fileName;
+		return !file_exists($file)?:$file;
+
 	}
 }
