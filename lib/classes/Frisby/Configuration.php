@@ -27,6 +27,10 @@ class Configuration
 		return $this->exists($config) ? $this->configs[$config]:null;
 	}
 
+	/**
+	 * @param $config
+	 * @return bool
+	 */
 	public function exists($config){
 		return isset($this->configs[$config]);
 	}

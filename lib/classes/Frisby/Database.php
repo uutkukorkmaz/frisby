@@ -5,6 +5,10 @@ namespace FrisbyModule\Frisby;
 
 use PDO;
 
+/**
+ * Class Database
+ * @package FrisbyModule\Frisby
+ */
 class Database
 {
 	protected $handler;
@@ -15,6 +19,10 @@ class Database
 		"dbhost" => "localhost", "username" => "root", "password" => "", "charset" => "utf8", "dbname" => null, "options" => null
 	];
 
+	/**
+	 * Database constructor.
+	 * @param array $options
+	 */
 	public function __construct($options = [])
 	{
 		try {
@@ -29,6 +37,12 @@ class Database
 		}
 	}
 
+	/**
+	 * @param $sql
+	 * @param array $params
+	 * @param string $fetch_function
+	 * @return bool|\PDOStatement
+	 */
 	public function query($sql, $params = [], $fetch_function = 'fetchAll')
 	{
 		$statement = $this->handler->prepare($sql);

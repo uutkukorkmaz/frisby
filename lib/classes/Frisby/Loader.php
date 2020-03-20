@@ -79,10 +79,4 @@ class Loader
 			return false;
 		}
 	}
-
-	public function asset($assetType,$fileName){
-		$file = realpath('.').$assetType.$fileName;
-		return !file_exists($file)?:$file;
-
-	}
 }
