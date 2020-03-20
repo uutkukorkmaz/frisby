@@ -81,15 +81,9 @@ class Route
 		if (in_array($_SERVER['REQUEST_METHOD'], $method)) {
 
 			$route = str_replace(array_keys($this->patterns), array_values($this->patterns), $route);
-			if (preg_match('@^' . $route . '$@', $this->currentRoute, $params)) {
-				//$this->validRoutes[] = $route;
-				//if (in_array($this->currentRoute,$this->validRoutes)) {
-
+			if (preg_match('@^' . $route . '/?$@', $this->currentRoute, $params)) {
 				$this->routes[$route] = $callback;
 				$this->__renderPage($route, $params);
-				//}else{
-				//
-				//}
 			}
 		} else {
 			http_response_code(405); //Method Not Allowed
