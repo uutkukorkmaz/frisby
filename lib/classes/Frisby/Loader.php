@@ -35,8 +35,13 @@ class Loader
 		$psr4_class = explode('\\',$classname);
 		$namespace = $psr4_class[0].'\\';
 		if(in_array($namespace,array_keys($this->classMap['psr-4']))){
-			$classDir = realpath('.').$this->classMap['psr-4'][$namespace].'/';
-			$this->loadClasses[end($psr4_class)] = $classDir.$psr4_class[1].'/'.$psr4_class[2].'.php';
+			$classDir = realpath('.').$this->classMap['psr-4'][$namespace];
+			$path = $classDir;
+			foreach ($psr4_class as $class){
+				if($class != $psr4_class[0])
+					$path.='/'.$class;
+			}
+			$this->loadClasses[end($psr4_class)] = $path.'.php';
 			return $this->loadClasses[end($psr4_class)];
 		}else{
 			//TODO: ERROR HANDLER
