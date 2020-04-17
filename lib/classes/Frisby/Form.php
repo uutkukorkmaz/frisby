@@ -52,7 +52,7 @@ class Form
 	/**
 	 * @param $form
 	 */
-	public static function __render($form)
+	public function __render($form)
 	{
 		$html = "<form ";
 		foreach ((array) $form->object->form as $attr => $item) {
