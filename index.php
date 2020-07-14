@@ -5,7 +5,7 @@ use FrisbyModule\Frisby\Language;
 use FrisbyModule\Frisby\Database;
 $app = new Core('development');
 $lang = new Language();
-$db = new Database(['dbname'=>'jig']);
+$db = new Database(['dbname'=>'test']);
 $cookie = new \FrisbyModule\Frisby\Cookie($_COOKIE);
 require 'lib/Routes.php';
 
