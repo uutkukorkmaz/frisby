@@ -70,9 +70,10 @@ class Core
 	 */
 	public function detectLang(Language $langObj)
 	{
+		global $config;
 		$cookie = new Cookie($_COOKIE);
 
-		return (isset($this->route->url[1])) ? $this->route->url[1] : ($cookie->exists('lang') ? $cookie->get('lang') : $langObj->getDefaultLang());
+		return (isset($this->route->url[1]) && $config->get('allowLocalization')) ? $this->route->url[1] : ($cookie->exists('lang') ? $cookie->get('lang') : $langObj->getDefaultLang());
 	}
 
 	public function img($file){
