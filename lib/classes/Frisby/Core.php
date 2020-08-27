@@ -2,19 +2,42 @@
 
 namespace FrisbyModule\Frisby;
 
+/**
+ * Class Core
+ * @package FrisbyModule\Frisby
+ */
 class Core
 {
+	/**
+	 * Contains the Route object
+	 * @var Route
+	 */
+	public Route $route;
 
-	public $route = [];
-
+	/**
+	 * @var ControllerInterface
+	 */
 	public $Controller;
 
+	/**
+	 * @var
+	 */
 	public $Model;
-
+	/**
+	 * Contains the Regex patterns for Route object
+	 */
 	public $patterns;
 
-	public $environment;
+	/**
+	 * Contains the environment object
+	 * public @var Environment
+	 */
+	public Environment $environment;
 
+	/**
+	 * Core constructor.
+	 * @param $environment
+	 */
 	public function __construct($environment)
 	{
 		$this->route = new Route();
@@ -46,6 +69,7 @@ class Core
 	}
 
 	/**
+	 * Redirects the page to given parameter
 	 * @param null $location
 	 */
 	public function location($location)
@@ -54,6 +78,7 @@ class Core
 	}
 
 	/**
+	 * Generates a URL
 	 * @param string $href
 	 * @return string
 	 */
@@ -65,6 +90,7 @@ class Core
 	}
 
 	/**
+	 * Detects language from first part of URL
 	 * @param Language $langObj
 	 * @return mixed|string|null
 	 */
@@ -76,14 +102,34 @@ class Core
 		return (isset($this->route->url[1]) && $config->get('allowLocalization')) ? $this->route->url[1] : ($cookie->exists('lang') ? $cookie->get('lang') : $langObj->getDefaultLang());
 	}
 
-	public function img($file){
-		return $this->go('assets/img/'.$file);
+	/**
+	 * Returns a path for using image file in HTML
+	 * @param $file
+	 * @return string
+	 */
+	public function img($file)
+	{
+		return $this->go('assets/img/' . $file);
 	}
-	public function css($file){
-		return $this->go('assets/css/'.$file);
+
+	/**
+	 *  Returns a path for using CSS file in HTML
+	 * @param $file
+	 * @return string
+	 */
+	public function css($file)
+	{
+		return $this->go('assets/css/' . $file);
 	}
-	public function js($file){
-		return $this->go('assets/js/'.$file);
+
+	/**
+	 *  Returns a path for using JavaScript file in HTML
+	 * @param $file
+	 * @return string
+	 */
+	public function js($file)
+	{
+		return $this->go('assets/js/' . $file);
 	}
 
 }
