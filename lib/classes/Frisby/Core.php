@@ -15,11 +15,13 @@ class Core
 	public Route $route;
 
 	/**
-	 * @var ControllerInterface
+	 * Contains current Controller object
+	 * @var
 	 */
 	public $Controller;
 
 	/**
+	 * Contains defined Model object
 	 * @var
 	 */
 	public $Model;

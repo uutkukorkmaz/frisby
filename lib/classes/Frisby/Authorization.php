@@ -10,11 +10,20 @@ namespace FrisbyModule\Frisby;
  */
 class Authorization
 {
-
+	/**
+	 * Contains the encryption key
+	 * @var string
+	*/
 	private static $key = '<your-crypto-key>';
+
+	/**
+	 * Contains encryption method
+	 * @var string
+	*/
 	private static $method = "AES-128-ECB";
 
 	/**
+	 * Creates a random pseudo bytes and converts it to string
 	 * @param int $lenght
 	 * @return bool|string
 	 */
@@ -25,6 +34,7 @@ class Authorization
 	}
 
 	/**
+	 * Decrypts the hashed string
 	 * @param $encrypted
 	 * @return false|string
 	 */
@@ -34,6 +44,7 @@ class Authorization
 	}
 
 	/**
+	 * Getter method for encryption key
 	 * @return string
 	 */
 	private static function getKey()
@@ -42,6 +53,7 @@ class Authorization
 	}
 
 	/**
+	 * Verifies the plain string with given hashed string
 	 * @param $password
 	 * @param $hash
 	 * @param string $hash_function
@@ -57,6 +69,7 @@ class Authorization
 	}
 
 	/**
+	 * Encrypts the plain string
 	 * @param $str
 	 * @return false|string
 	 */
