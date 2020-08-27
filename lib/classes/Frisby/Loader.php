@@ -14,14 +14,12 @@ class Loader
 	public $loadClasses=[];
 
 
-	const IMAGE = '/assets/img/';
-	const STYLE = '/assets/css/';
-	const FONT = '/assets/fonts/';
-	const SCRIPT = '/assets/js/';
+	const IMAGE = 'assets/img/';
+	const STYLE = 'assets/css/';
+	const FONT = 'assets/fonts/';
+	const SCRIPT = 'assets/js/';
 	/**
 	 * Loader constructor.
-	 * @param null $file
-	 * @param null $type
 	 */
 	public function __construct(){
 		$this->getClassMap();

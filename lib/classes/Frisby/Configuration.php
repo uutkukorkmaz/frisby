@@ -4,11 +4,16 @@
 namespace FrisbyModule\Frisby;
 
 
+/**
+ * Class Configuration
+ * @package FrisbyModule\Frisby
+ */
 class Configuration
 {
 	private $configs = [];
 
 	/**
+	 * Sets a configuration.
 	 * @param $config
 	 * @param bool $value
 	 * @return bool
@@ -20,6 +25,7 @@ class Configuration
 	}
 
 	/**
+	 * Gets a specified configuration.
 	 * @return array
 	 */
 	public function get($config)
@@ -28,6 +34,7 @@ class Configuration
 	}
 
 	/**
+	 * Checks given configuration name is exists or not.
 	 * @param $config
 	 * @return bool
 	 */

@@ -111,7 +111,7 @@ class Core
 	 */
 	public function img($file)
 	{
-		return $this->go('assets/img/' . $file);
+		return $this->go(Loader::IMAGE . $file);
 	}
 
 	/**
@@ -121,7 +121,7 @@ class Core
 	 */
 	public function css($file)
 	{
-		return $this->go('assets/css/' . $file);
+		return $this->go(Loader::STYLE . $file);
 	}
 
 	/**
@@ -131,7 +131,7 @@ class Core
 	 */
 	public function js($file)
 	{
-		return $this->go('assets/js/' . $file);
+		return $this->go(Loader::SCRIPT . $file);
 	}
 
 }
