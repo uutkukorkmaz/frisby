@@ -58,6 +58,7 @@ class Loader
 	}
 
 	/**
+	 * Prepares path string for View node
 	 * @param $view
 	 * @return bool|string
 	 */
@@ -71,6 +72,7 @@ class Loader
 	}
 
 	/**
+	 * Prepates path string for locale file
 	 * @param $lang
 	 * @return string
 	 */
