@@ -67,19 +67,20 @@ class Language
 	/**
 	 * @return array
 	 */
-	public static function getAvailableLangs(){
-		$dir = realpath('.').'\lib\languages';
+	public static function getAvailableLangs()
+	{
+		$dir = realpath('.') . '\lib\languages';
 		$res = [];
 		if ($handle = opendir($dir)) {
 			while ($file = readdir($handle)) {
 				if (!is_dir($file)) {
-					$res[] = explode('.',$file)[0];
+					$res[] = explode('.', $file)[0];
 				}
 			}
 		}
-		asort($res,SORT_ASC);
+		asort($res, SORT_ASC);
 		$result = [];
-		foreach($res as $re){
+		foreach ($res as $re) {
 			$result[] = $re;
 		}
 		return $result;
@@ -89,13 +90,14 @@ class Language
 	 * Generates link tags for Multi-lingual SEO
 	 * @return string
 	 */
-	public static function generateHrefLang(){
-		global $app,$lang;
+	public static function generateHrefLang()
+	{
+		global $app, $lang;
 		$html = "";
 		foreach (self::getAvailableLangs() as $language) {
-			if($language != $lang->getDefaultLang()) {
+			if ($language != $lang->getDefaultLang()) {
 				$html .= '<link rel="alternate" href="' . $app->go($language) . '" hreflang="' . $language . '">' . PHP_EOL;
-			}else{
+			} else {
 				$html .= '<link rel="alternate" href="' . $app->go() . '" hreflang="' . $language . '">' . PHP_EOL;
 			}
 		}

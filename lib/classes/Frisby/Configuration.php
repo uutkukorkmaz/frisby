@@ -24,7 +24,7 @@ class Configuration
 	 * @param bool $value
 	 * @return bool
 	 */
-	public function set($config,$value=false)
+	public function set($config, $value = false)
 	{
 		$this->configs[$config] = $value;
 		return $value;
@@ -36,7 +36,7 @@ class Configuration
 	 */
 	public function get($config)
 	{
-		return $this->exists($config) ? $this->configs[$config]:null;
+		return $this->exists($config) ? $this->configs[$config] : null;
 	}
 
 	/**
@@ -44,7 +44,8 @@ class Configuration
 	 * @param $config
 	 * @return bool
 	 */
-	public function exists($config){
+	public function exists($config)
+	{
 		return isset($this->configs[$config]);
 	}
 }

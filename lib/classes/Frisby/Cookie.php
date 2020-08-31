@@ -50,7 +50,7 @@ class Cookie implements CookieInterface
 	 */
 	public function exists($name)
 	{
-		return isset($this->cookie[$this->cookiePrefix.$name]);
+		return isset($this->cookie[$this->cookiePrefix . $name]);
 	}
 
 	/**
@@ -63,11 +63,11 @@ class Cookie implements CookieInterface
 	public function get($name)
 	{
 
-		if (!isset($this->cookie[$this->cookiePrefix.$name])) { // Input var okay.
+		if (!isset($this->cookie[$this->cookiePrefix . $name])) { // Input var okay.
 			return null;
 		}
 
-		return strip_tags(stripslashes($this->cookie[$this->cookiePrefix.$name])); // Input var okay.
+		return strip_tags(stripslashes($this->cookie[$this->cookiePrefix . $name])); // Input var okay.
 	}
 
 	/**
@@ -121,7 +121,7 @@ class Cookie implements CookieInterface
 	{
 
 		return setcookie(
-			$this->cookiePrefix.$name,
+			$this->cookiePrefix . $name,
 			$value,
 			$this->calculate_expiration_time($expire),
 			$path,
@@ -155,7 +155,7 @@ class Cookie implements CookieInterface
 	 */
 	public function delete($name, $path = '/')
 	{
-		unset($this->cookie[$this->cookiePrefix.$name]); // Input var okay.
+		unset($this->cookie[$this->cookiePrefix . $name]); // Input var okay.
 		return $this->set($name, '', time() - 15 * 60, $path);
 	}
 }

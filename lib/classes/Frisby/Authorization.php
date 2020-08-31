@@ -19,13 +19,13 @@ class Authorization
 	/**
 	 * Contains the encryption key
 	 * @var string
-	*/
+	 */
 	private static $key = '<your-crypto-key>';
 
 	/**
 	 * Contains encryption method
 	 * @var string
-	*/
+	 */
 	private static $method = "AES-128-ECB";
 
 	/**

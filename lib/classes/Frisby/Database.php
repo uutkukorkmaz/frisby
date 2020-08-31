@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace FrisbyModule\Frisby;
 
 use \PDO;
+
 /**
  * Frisby Framework
  * Database Class
@@ -31,7 +32,7 @@ class Database
 	public function __construct($options = [])
 	{
 		try {
-			$options = array_merge($this->defaults,$options);
+			$options = array_merge($this->defaults, $options);
 			$this->handler = new PDO("mysql:host={$options['dbhost']};dbname={$options['dbname']};charset={$options['charset']};", $options['username'], $options['password'], $options['options']);
 			$this->handler->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$this->handler->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, self::DEFAULT_FETCH_MODE);
