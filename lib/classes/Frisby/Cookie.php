@@ -30,7 +30,7 @@ class Cookie implements CookieInterface
 	 *
 	 * @var array
 	 */
-	private $cookie = array();
+	private $cookie = [];
 
 	public $cookiePrefix = 'FRISBY__';
 
@@ -39,7 +39,7 @@ class Cookie implements CookieInterface
 	 *
 	 * @param array $cookie $_COOKIE global variable.
 	 */
-	public function __construct(array $cookie = array())
+	public function __construct(array $cookie = [])
 	{
 		$this->cookie = empty($cookie) ? $_COOKIE : $cookie;
 	}
@@ -136,7 +136,7 @@ class Cookie implements CookieInterface
 	 *
 	 * @author https://github.com/codezero-be
 	 *
-	 * @param int $expire The espiration time
+	 * @param int $expire The expiration time
 	 *
 	 * @return int
 	 */

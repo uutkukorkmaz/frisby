@@ -1,11 +1,17 @@
 <?php
+declare(strict_types=1);
 
 
 namespace FrisbyModule\Frisby;
 
 
 /**
- * Class Configuration
+ * Frisby Framework
+ * Configuration Class
+ *
+ * This class simply manages the application's hard configuration
+ *
+ * @author Utku Korkmaz
  * @package FrisbyModule\Frisby
  */
 class Configuration

@@ -1,9 +1,17 @@
 <?php
+declare(strict_types=1);
 
 namespace FrisbyModule\Frisby;
 
+
 /**
- * Class Core
+ * Frisby Framework
+ * Core Class
+ *
+ * This is the main core of the entire Frisby. In the application, this class
+ * represented by $app variable which is accessable anywhere in the project
+ *
+ * @author Utku Korkmaz
  * @package FrisbyModule\Frisby
  */
 class Core
@@ -38,9 +46,9 @@ class Core
 
 	/**
 	 * Core constructor.
-	 * @param $environment
+	 * @param string $environment
 	 */
-	public function __construct($environment)
+	public function __construct(string $environment)
 	{
 		$this->route = new Route();
 		$_ENV['FRISBY'] = $this;
@@ -52,7 +60,7 @@ class Core
 	 * @param string $controller
 	 * @return string
 	 */
-	public function setController($controller)
+	public function setController(string $controller)
 	{
 		$this->Controller = 'FrisbyApp\\Controller\\' . $controller;
 		return $this->Controller;
@@ -64,7 +72,7 @@ class Core
 	 * @param string $model
 	 * @return string
 	 */
-	public function setModel($model)
+	public function setModel(string $model)
 	{
 		$this->Model = 'FrisbyApp\\Model\\' . $model;
 		return $this->Model;
@@ -72,9 +80,9 @@ class Core
 
 	/**
 	 * Redirects the page to given parameter
-	 * @param null $location
+	 * @param string $location
 	 */
-	public function location($location)
+	public function location(string $location)
 	{
 		header('location:' . $location);
 	}
@@ -84,7 +92,7 @@ class Core
 	 * @param string $href
 	 * @return string
 	 */
-	public function go($href = '')
+	public function go(string $href = '')
 	{
 		global $config;
 		$href = substr($href, 0, 1) == '/' ? $href : '/' . $href;
@@ -106,20 +114,20 @@ class Core
 
 	/**
 	 * Returns a path for using image file in HTML
-	 * @param $file
+	 * @param string $file
 	 * @return string
 	 */
-	public function img($file)
+	public function img(string $file)
 	{
 		return $this->go(Loader::IMAGE . $file);
 	}
 
 	/**
 	 *  Returns a path for using CSS file in HTML
-	 * @param $file
+	 * @param string $file
 	 * @return string
 	 */
-	public function css($file)
+	public function css(string $file)
 	{
 		return $this->go(Loader::STYLE . $file);
 	}
@@ -129,7 +137,7 @@ class Core
 	 * @param $file
 	 * @return string
 	 */
-	public function js($file)
+	public function js(string $file)
 	{
 		return $this->go(Loader::SCRIPT . $file);
 	}

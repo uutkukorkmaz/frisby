@@ -1,11 +1,17 @@
 <?php
+declare(strict_types=1);
 
 
 namespace FrisbyModule\Frisby;
 
 
 /**
- * Class Authorization
+ * Frisby Framework
+ * Authorization Class
+ *
+ * This class helps the authorize last user without extra code
+ *
+ * @author Utku Korkmaz
  * @package FrisbyModule\Frisby
  */
 class Authorization

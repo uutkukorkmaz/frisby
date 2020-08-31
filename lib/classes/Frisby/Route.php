@@ -1,11 +1,17 @@
 <?php
+declare(strict_types=1);
 
 
 namespace FrisbyModule\Frisby;
 
-
 /**
- * Class Route
+ * Frisby Framework
+ * Route Class
+ *
+ * This class is the back bone of the entire framework as you can guess. It holds
+ * predefined routes and controllers, and handles them.
+ *
+ * @author Utku Korkmaz
  * @package FrisbyModule\Frisby
  */
 class Route
@@ -90,6 +96,17 @@ class Route
 		}
 	}
 
+	/**
+	 * This method checks parsed URL for if it's predefined or not. After that,
+	 * it calls related controller. If there is any defined method for specified
+	 * route, controller class runs with it. But if there isn't this method tries
+	 * to reach and run method which named as 'root()'. The controller's '__construct()' method
+	 * runs anyways.
+	 *
+	 * @param string $route
+	 * @param array $params
+	 *
+	 */
 	private function __renderPage($route, $params)
 	{
 		global $app;
@@ -108,9 +125,7 @@ class Route
 			try {
 				if (in_array($method, get_class_methods($app->Controller))) {
 					call_user_func_array([new $app->Controller, $method], $params);
-				} else {
-					throw new FrisbyException("Controller method '{$method}' does not exists on {$app->Controller}");
-				}
+				} else throw new FrisbyException("Controller method '{$method}' does not exists on {$app->Controller}");
 			} catch (FrisbyException $e) {
 				echo $e->getMessage();
 				// TODO:: ERROR HANDLER

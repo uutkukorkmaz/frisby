@@ -1,12 +1,17 @@
 <?php
+declare(strict_types=1);
 
 
 namespace FrisbyModule\Frisby;
 
-use PDO;
-
+use \PDO;
 /**
- * Class Database
+ * Frisby Framework
+ * Database Class
+ *
+ * This class handles database connection and query stuff
+ *
+ * @author Utku Korkmaz
  * @package FrisbyModule\Frisby
  */
 class Database
@@ -32,7 +37,7 @@ class Database
 			$this->handler->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, self::DEFAULT_FETCH_MODE);
 			return $this->handler;
 		} catch (\PDOException $e) {
-			// TODO:: ERROR HANDLER
+			echo $e->getMessage();
 			return false;
 		}
 	}

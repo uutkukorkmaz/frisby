@@ -1,11 +1,16 @@
 <?php
+declare(strict_types=1);
 
 
 namespace FrisbyModule\Frisby;
 
-
 /**
- * Class Loader
+ * Frisby Framework
+ * Loader Class
+ *
+ * The loader class based on PSR-4 standarts of PHP-FIG. Also this class generates URLs to asset files for HTML
+ *
+ * @author Utku Korkmaz
  * @package FrisbyModule\Frisby
  */
 class Loader

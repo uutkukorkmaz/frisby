@@ -1,11 +1,17 @@
 <?php
+declare(strict_types=1);
 
 
 namespace FrisbyModule\Frisby;
 
 
 /**
- * Class Language
+ * Frisby Framework
+ * Language Class
+ *
+ * This class handles the multi-lingual features of project.
+ *
+ * @author Utku Korkmaz
  * @package FrisbyModule\Frisby
  */
 class Language
@@ -42,7 +48,7 @@ class Language
 	public function __construct()
 	{
 		global $loader, $config, $app;
-		$cookie = new Cookie($_COOKIE);
+
 		$this->defaultLang = $config->get('defaultLang');
 		$this->setCurrentLang($app->detectLang($this));
 		require (file_exists($loader->lang($this->currentLang))) ? $loader->lang($this->currentLang) : $loader->lang($this->getDefaultLang());
@@ -80,7 +86,7 @@ class Language
 	}
 
 	/**
-	 * Generates link tags for Multilingual SEO
+	 * Generates link tags for Multi-lingual SEO
 	 * @return string
 	 */
 	public static function generateHrefLang(){
