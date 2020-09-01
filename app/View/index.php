@@ -7,7 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>My first Friby App</title>
 </head>
+    
 <body>
-<h1>Hello World!</h1>
+    
+<h1 style="text-align:center">Hello World!</h1>
+    
 </body>
+    
 </html>
