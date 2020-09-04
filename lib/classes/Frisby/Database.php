@@ -57,4 +57,13 @@ class Database
 		return explode(' ', $sql)[0] == 'SELECT' ? $statement->$fetch_function() : $statement;
 	}
 
+	/**
+	 * @return int
+	 */
+	public function lastID(): int
+	{
+		return $this->handler->lastInsertId();
+	}
+
+
 }
