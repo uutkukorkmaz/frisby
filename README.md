@@ -1,2 +1,2 @@
 # frisby
-You can find the full documentation in [Wiki](https://github.com/uutkukorkmaz/frisby/wiki) page.
+You can find the documentation in [Wiki](https://github.com/uutkukorkmaz/frisby/wiki) page.
