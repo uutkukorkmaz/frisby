@@ -37,7 +37,7 @@ class Language
 	{
 
 		$cookie = new Cookie($_COOKIE);
-		$this->currentLang = $currentLang;
+		$this->currentLang = strlen($currentLang) > 2 ? $this->getDefaultLang() : $currentLang;
 
 		$cookie->forever('lang', $currentLang);
 	}
