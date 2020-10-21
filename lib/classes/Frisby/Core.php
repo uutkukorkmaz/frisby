@@ -22,6 +22,8 @@ class Core
 	 */
 	public Route $route;
 
+	public $appName;
+
 	/**
 	 * Contains current Controller object
 	 * @var
@@ -48,10 +50,11 @@ class Core
 	 * Core constructor.
 	 * @param string $environment
 	 */
-	public function __construct(string $environment)
+	public function __construct(string $appName = 'Frisby',string $environment='development')
 	{
 		$this->route = new Route();
 		$_ENV['FRISBY'] = $this;
+		$this->appName = $appName;
 		$this->environment = new Environment($environment);
 	}
 

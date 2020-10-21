@@ -7,7 +7,7 @@ use FrisbyModule\Frisby\Cookie;
 use FrisbyModule\Frisby\Language;
 use FrisbyModule\Frisby\Database;
 
-$app = new Core('development');
+$app = new Core('Frisby','development');
 $lang = new Language();
 $db = new Database(['dbname' => 'test']);
 $cookie = new Cookie($_COOKIE);
