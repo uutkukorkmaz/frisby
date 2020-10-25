@@ -1,2 +1,5 @@
 RewriteEngine On
-RewriteRule ^([0-9a-zA-Z-_/]+)$ index.php?route=$1 [QSA]
+# Block direct requests to the "public" subdirectory
+RewriteCond %{THE_REQUEST} /public/([^\s?]*) [NC]
+RewriteRule ^ %1 [L,NE,R=302]
+RewriteRule ^(.*)$ public/index.php?route=$1 [L,QSA]
