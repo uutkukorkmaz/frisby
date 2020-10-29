@@ -14,12 +14,13 @@ class Core
 
     public const DIRECTORY_ROOT = '/frisby';
 
+    public static Core $instance;
+
     public function __construct()
     {
+        self::$instance = $this;
         $this->request = new Request();
-        $this->route = new Router($this);
-        print_r($this);
-
+        $this->route = new Router();
     }
 
 }
