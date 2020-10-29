@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Frisby\Module;
+namespace Frisby\Component;
 
 
 use Frisby\Exception\NotFound;
@@ -15,7 +15,6 @@ class Response
 
     public function __construct()
     {
-
         $this->time = time();
     }
 
@@ -41,7 +40,9 @@ class Response
     }
 
     public function __destruct(){
-
+        $core = Core::getInstance();
+        print_r($core);
+        //TODO: render page
     }
 
 
