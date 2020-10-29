@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Frisby\Module;
+namespace Frisby\Component;
 
 
 class Router
@@ -19,12 +19,19 @@ class Router
     public const MUST_HAVE_SCORE = 'sc';
     private const REGEX_SCORE = '_-';
 
+    public const METHOD_GET = 'GET';
+    public const METHOD_POST = 'POST';
+    public const METHOD_PUT = 'PUT';
+    public const METHOD_PATCH = 'PATCH';
+    public const METHOD_DELETE = 'DELETE';
+
+
     public function parseURL(){
         //TODO:: Parsing URLS
     }
 
 
-    public function pattern($key,$rules){
+    public function pattern($key,$rules) : void{
         $this->patterns[$key] = self::generatePattern($rules);
     }
 
@@ -36,11 +43,10 @@ class Router
         $pattern .= in_array(self::MUST_HAVE_UPPERCASE, $rules) ? self::REGEX_UPPERCASE : null;
         $pattern .= in_array(self::MUST_HAVE_SCORE, $rules) ? self::REGEX_SCORE : null;
         $pattern .= ']+)';
-
         return $pattern;
     }
 
-    private function addRoute($route, $callback, $method)
+    private function addRoute($route, $callback, $method) : void
     {
         $method = strtoupper($method);
         $method = strpos('|', $method) ?: explode('|', $method);
@@ -56,17 +62,17 @@ class Router
 
     }
 
-    public function get($route, $callback)
+    public function get($route, $callback) : void
     {
-        $this->addRoute($route, $callback, 'get');
+        $this->addRoute($route, $callback, self::METHOD_GET);
     }
 
-    public function post($route, $callback)
+    public function post($route, $callback) : void
     {
-        $this->addRoute($route, $callback, 'post');
+        $this->addRoute($route, $callback, self::METHOD_POST);
     }
 
-    public function add($route, $callback, $method = 'get|post')
+    public function add($route, $callback, $method = self::METHOD_GET."|".self::METHOD_POST) : void
     {
         $this->addRoute($route, $callback, $method);
     }

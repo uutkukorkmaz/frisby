@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Frisby\Module;
+namespace Frisby\Component;
 
 
 class Core
@@ -14,7 +14,7 @@ class Core
 
     public static string $DIRECTORY_ROOT;
 
-    public static Core $instance;
+    private static Core $instance;
 
     public function __construct()
     {
@@ -23,6 +23,10 @@ class Core
         $this->request = new Request();
         $this->route = new Router();
         $this->response = new Response();
+    }
+
+    public static function getInstance(){
+        return self::$instance;
     }
 
 }

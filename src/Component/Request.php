@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Frisby\Module;
+namespace Frisby\Component;
 
 
 class Request
