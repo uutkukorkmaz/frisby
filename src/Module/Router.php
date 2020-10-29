@@ -19,18 +19,11 @@ class Router
     public const MUST_HAVE_SCORE = 'sc';
     private const REGEX_SCORE = '_-';
 
-    public function __construct()
-    {
-        Core::$instance->response = new Response();
-
-
+    public function parseURL(){
+        //TODO:: Parsing URLS
     }
 
-    public static function parseURL()
-    {
 
-
-    }
     public function pattern($key,$rules){
         $this->patterns[$key] = self::generatePattern($rules);
     }
@@ -54,10 +47,10 @@ class Router
 
         if (is_array($method)) {
             foreach ($method as $m):
-                $this->routes[$route][$m] = $callback;
+                $this->routes[$m][$route] = $callback;
             endforeach;
         } else {
-            $this->routes[$route][$method] = $callback;
+            $this->routes[$method][$route] = $callback;
         }
 
 
