@@ -35,15 +35,14 @@ class Response
 
     public function setException(?string $exception)
     {
-
-        if(is_null($exception)) return;
+        if(is_null($exception)) return null;
         $this->exception = new $exception();
         return $this->exception;
     }
 
-    public function __destruct()
-    {
+    public function __destruct(){
 
     }
+
 
 }

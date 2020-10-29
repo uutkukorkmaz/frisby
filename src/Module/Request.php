@@ -15,14 +15,14 @@ class Request
 
     public function __construct()
     {
-       $this->uri = str_replace(Core::DIRECTORY_ROOT, null, $_SERVER['REQUEST_URI']);
-        $this->route = $_GET['route'] != "" ? $_GET['route'] : '/';
+        $this->uri = str_replace(Core::$DIRECTORY_ROOT, null, $_SERVER['REQUEST_URI']);
         $this->method = $_SERVER['REQUEST_METHOD'];
-        $this->time =  $_SERVER['REQUEST_TIME'];
+        $this->time = $_SERVER['REQUEST_TIME'];
         unset($_GET['route']);
     }
 
-    public function method(){
+    public function method()
+    {
         return $this->method;
     }
 

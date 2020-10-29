@@ -12,15 +12,17 @@ class Core
 
     public Router $route;
 
-    public const DIRECTORY_ROOT = '/frisby';
+    public static string $DIRECTORY_ROOT;
 
     public static Core $instance;
 
     public function __construct()
     {
+        self::$DIRECTORY_ROOT = $_ENV['APP_ROOT'];
         self::$instance = $this;
         $this->request = new Request();
         $this->route = new Router();
+        $this->response = new Response();
     }
 
 }

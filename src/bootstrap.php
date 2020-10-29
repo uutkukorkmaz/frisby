@@ -1,5 +1,5 @@
 <?php
 use Frisby\Module\Router;
-$Frisby->route->pattern('%id%',[Router::MUST_HAVE_NUMERIC]);
+$Frisby->route->pattern(':id',[Router::MUST_HAVE_NUMERIC]);
 
-$Frisby->route->add('test','test');
+$Frisby->route->add('/test/:id','test');
