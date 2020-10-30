@@ -1,4 +1,5 @@
 .idea
-.gitignore
-.github
+!.gitignore
 assets/img/Başlıksız-1.psd
+/vendor/
+.env
