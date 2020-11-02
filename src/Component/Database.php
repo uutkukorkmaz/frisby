@@ -25,21 +25,18 @@ class Database
 	const SQL_Update = "UPDATE %s SET %s WHERE %s";
 	const SQL_Delete = "DELETE FROM %s WHERE %s";
 
-	private static string $dbPrefix;
+	private static ?string $dbPrefix;
 
 	private static Database $instance;
 
 	public function __construct()
 	{
 		self::$instance = $this;
-		try {
-			$this->$dbPrefix = $_ENV['DB_PREFIX'];
-			$this->pdo = new PDO(self::generateDSN($_ENV['DB_HOST'], $_ENV['DB_NAME'], $_ENV['DB_CHARSET']), $_ENV['DB_USER'], $_ENV['DB_PASSWORD']);
-			$this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			$this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, self::DEFAULT_FETCH_MODE);
-		} catch (\PDOException $e) {
-			echo $e->getMessage();
-		}
+		self::$dbPrefix = $_ENV['DB_PREFIX'] ?? null;
+		$this->pdo = new PDO(self::generateDSN($_ENV['DB_HOST'], $_ENV['DB_NAME'], $_ENV['DB_CHARSET']), $_ENV['DB_USER'], $_ENV['DB_PASSWORD']);
+		$this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, self::DEFAULT_FETCH_MODE);
+
 	}
 
 	public static function getInstance()
