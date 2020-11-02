@@ -16,6 +16,8 @@ class Core
 
     private static Core $instance;
 
+    public Database $db;
+
     public function __construct()
     {
         self::$DIRECTORY_ROOT = $_ENV['APP_ROOT'];
@@ -23,6 +25,7 @@ class Core
         $this->request = new Request();
         $this->route = new Router();
         $this->response = new Response();
+        $this->db = new Database();
     }
 
     public static function getInstance(){
