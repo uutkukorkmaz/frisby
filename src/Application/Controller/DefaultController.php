@@ -11,6 +11,6 @@ class DefaultController extends Controller
 
 	public function render(array $params)
 	{
-		echo "Default Controller";
+		echo "<img src='http://localhost/frisby/public/assets/img/test.jpg'>";
 	}
 }

@@ -1,5 +1,5 @@
 .idea
 !.gitignore
-assets/img/Başlıksız-1.psd
+public/assets/img/Başlıksız-1.psd
 /vendor/
 .env

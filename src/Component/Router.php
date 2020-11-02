@@ -7,7 +7,7 @@ namespace Frisby\Component;
 class Router
 {
 
-	public array $routes = [];
+	public array $routes = ['GET' => [], 'POST' => [], 'PUT' => [], 'DELETE' => []];
 	public array $patterns = [];
 
 	public const MUST_HAVE_NUMERIC = 'num';
@@ -24,12 +24,6 @@ class Router
 	public const METHOD_PUT = 'PUT';
 	public const METHOD_PATCH = 'PATCH';
 	public const METHOD_DELETE = 'DELETE';
-
-
-	public function parseURL()
-	{
-		//TODO:: Parsing URLS
-	}
 
 
 	public function pattern($key, $rules): void
@@ -76,12 +70,10 @@ class Router
 					$core->response->setCode(405);
 				}
 			}
-			$core->response->setCode(200);
-			$core->response->execute = $route;
 		}
-//		if ($core->response->code != 200) {
-//			$core->response->setCode(Response::INVALID_ROUTE);
-//		}
+		if ($core->response->code != 200) {
+			$core->response->setCode(Response::INVALID_ROUTE);
+		}
 
 
 	}
