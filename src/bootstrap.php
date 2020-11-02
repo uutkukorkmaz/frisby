@@ -11,3 +11,4 @@ $Frisby->route->pattern(':permalink', [
 ]);
 
 $Frisby->route->get('/page/:permalink',[DefaultController::class]);
+$Frisby->route->get('/test',[DefaultController::class,'testMethod']);

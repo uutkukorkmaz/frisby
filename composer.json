@@ -1,20 +1,21 @@
 {
-    "name": "uutkukorkmaz/frisby",
-    "authors": [
-        {
-            "name": "Utku Korkmaz",
-            "email": "uutkukorkmaz@gmail.com"
-        }
-    ],
-    "autoload": {
-        "psr-4": {
-            "Frisby\\": "./src"
-        }
-    },
-    "require": {
-        "php": ">=7.4",
-        "ext-pdo": "*",
-        "vlucas/phpdotenv": "^5.0",
-        "filp/whoops": "^2.9"
+  "name": "uutkukorkmaz/frisby",
+  "authors": [
+    {
+      "name": "Utku Korkmaz",
+      "email": "uutkukorkmaz@gmail.com"
     }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Frisby\\": "./src"
+    }
+  },
+  "require": {
+    "php": ">=7.4",
+    "ext-pdo": "*",
+    "vlucas/phpdotenv": "^5.0",
+    "filp/whoops": "^2.9",
+    "ext-json": "*"
+  }
 }

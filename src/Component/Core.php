@@ -39,9 +39,10 @@ class Core
 
 	protected function initServices(){
 		$this->request = new Request();
+        $this->response = new Response();
 		$this->route = new Router();
 		$this->db = new Database();
-		$this->response = new Response();
+
 	}
 
 }

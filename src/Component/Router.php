@@ -51,6 +51,7 @@ class Router
 
 		if (preg_match('@^' . $route . '/?$@', $core->request->uri, $params)) {
 			$core->response->params = $params;
+			//todo: implement methods for shorten this method
 			if (is_array($method)) {
 				if (in_array($core->request->method, $method)) {
 					foreach ($method as $m):
@@ -70,13 +71,12 @@ class Router
 					$core->response->setCode(405);
 				}
 			}
-		}
-		if ($core->response->code != 200) {
-			$core->response->setCode(Response::INVALID_ROUTE);
+			return;
 		}
 
 
 	}
+
 
 	public function get($route, $callback): void
 	{

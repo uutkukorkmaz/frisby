@@ -5,12 +5,18 @@ namespace Frisby\Application\Controller;
 
 
 use Frisby\Component\Controller;
+use Frisby\Component\Core;
 
 class DefaultController extends Controller
 {
 
 	public function render(array $params)
 	{
-		echo "<img src='http://localhost/frisby/public/assets/img/test.jpg'>";
+		//echo json_encode(Core::getInstance()->db::selectAll('activities'));
 	}
+
+	public function testMethod(){
+	    echo "test page";
+
+    }
 }
