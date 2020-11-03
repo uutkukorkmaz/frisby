@@ -6,5 +6,5 @@ use Frisby\Component\Core;
 
 $dotenv = Dotenv\Dotenv::createImmutable(FRISBY_ROOT);
 $dotenv->load();
-$Frisby = new Core();
+$Frisby = new Core(\Frisby\Service\Database::class,\Frisby\Service\Cryption::class);
 require_once FRISBY_ROOT. DIRECTORY_SEPARATOR . 'src/bootstrap.php';

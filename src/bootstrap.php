@@ -10,4 +10,4 @@ $Frisby->route->pattern(':permalink', [
 	Router::MUST_HAVE_UPPERCASE
 ]);
 
-$Frisby->route->get('/page/:permalink',[DefaultController::class]);
+$Frisby->route->get('/page/:permalink',DefaultController::class);

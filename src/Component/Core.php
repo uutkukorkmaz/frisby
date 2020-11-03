@@ -18,18 +18,20 @@ class Core
 
 	private static Core $instance;
 
-	public Database $db;
+	public ServiceProvider $serviceProvider;
 
 	public Whoops $whoops;
 
-	public function __construct()
+	private array $bindings;
+
+	public function __construct(...$services)
 	{
 		$this->whoops = new Whoops();
 		$this->whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 		$this->whoops->register();
 		self::$DIRECTORY_ROOT = $_ENV['APP_ROOT'];
 		self::$instance = $this;
-		$this->initServices();
+		$this->initServices($services);
 	}
 
 	public static function getInstance()
@@ -37,11 +39,19 @@ class Core
 		return self::$instance;
 	}
 
-	protected function initServices(){
+	protected function initServices($services){
 		$this->request = new Request();
 		$this->route = new Router();
-		$this->db = new Database();
+		$this->serviceProvider = new ServiceProvider($services);
 		$this->response = new Response();
+	}
+
+	public function bind(string $key,$value){
+		$this->bindings[$key] = $value;
+	}
+
+	public function resolve(string $key){
+		return $this->bindings[$key];
 	}
 
 }

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Frisby\Component;
+namespace Frisby\Service;
 
 
 use \PDO;

@@ -86,17 +86,13 @@ class Response
 		if (array_key_exists($this->execute, $core->route->routes[$core->request->method])) {
 			if ($this->code == 200 && $this->exception == null) {
 				$this->controller = $core->route->routes[$core->request->method][$this->execute];
-
 				if (is_string($this->controller)): $this->runControllerFromString(); endif;
-
 				if (is_callable($this->controller)) : $this->runControllerFromClosure(); endif;
-
 				if (is_array($this->controller)) : $this->runControllerFromArray(); endif;
 			}
 		} else {
 			$core->response->setCode(404);
 		}
-
 
 	}
 
