@@ -1,11 +1,13 @@
 <?php
 
 
-namespace Frisby\Framework;
+namespace Frisby\Service;
+
+use Frisby\Framework\Singleton;
 
 /**
  * Class Logger
- * @package Frisby\Framework
+ * @package Frisby\Service
  * @extends Frisby\Framework\Singleton
  */
 class Logger extends Singleton

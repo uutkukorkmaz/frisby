@@ -5,6 +5,7 @@ namespace Frisby\Framework;
 
 
 use Frisby\Service\Database;
+use Frisby\Service\Logger;
 use Whoops\Run as Whoops;
 
 /**
@@ -15,6 +16,8 @@ class Core
 {
 	private static Core $instance;
 
+	public Request $request;
+
 	public Container $container;
 
 	public Logger $log;
@@ -23,15 +26,17 @@ class Core
 
 	private Whoops $whoops;
 
-	public function __construct(...$services)
+
+
+	public function __construct()
 	{
+		$this->initErrorHandler();
 		self::$instance = $this;
-		$this->whoops = new Whoops();
-		$this->whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
-		$this->whoops->register();
-		$this->container = new Container($services);
+		$this->container = new Container();
+		$this->request = Request::getInstance();
 		$this->initServices();
 	}
+
 
 	private function initServices()
 	{
@@ -39,12 +44,16 @@ class Core
 		$this->log = $this->container->resolve(Logger::class);
 	}
 
-	/**
-	 * @return Core
-	 */
-	public static function getInstance()
+
+	public static function getInstance(): Core
 	{
 		return self::$instance;
 	}
 
+	private function initErrorHandler()
+	{
+		$this->whoops = new Whoops();
+		$this->whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+		$this->whoops->register();
+	}
 }

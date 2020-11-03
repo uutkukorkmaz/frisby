@@ -9,7 +9,7 @@ use \PDO;
 
 /**
  * Class Database
- * @package Frisby\Services
+ * @package Frisby\Service
  * @extends Frisby\Framework\Singleton
  */
 class Database extends Singleton
