@@ -2,9 +2,11 @@
 define('FRISBY_ROOT',dirname(__DIR__));
 require_once FRISBY_ROOT . DIRECTORY_SEPARATOR . 'vendor/autoload.php';
 
-use Frisby\Component\Core;
+use Frisby\Framework\Core;
 
 $dotenv = Dotenv\Dotenv::createImmutable(FRISBY_ROOT);
 $dotenv->load();
-$Frisby = new Core(\Frisby\Service\Database::class,\Frisby\Service\Cryption::class);
+
+$Frisby = new Core(\Frisby\Framework\Logger::class,\Frisby\Service\Database::class);
+print_r($Frisby);
 require_once FRISBY_ROOT. DIRECTORY_SEPARATOR . 'src/bootstrap.php';
