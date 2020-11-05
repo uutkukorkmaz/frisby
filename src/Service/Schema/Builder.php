@@ -76,7 +76,11 @@ class Builder
 	private function addColumn($columnName, $type, $length = false, $isNull = false, $haveDefault = false, $autoIncrement = false)
 	{
 		$len = $length ? "({$length})" : null;
-		$this->tableSQL .= "`{$columnName}` {$type}{$len} " . ($isNull ? 'NULL' : 'NOT NULL') . ($haveDefault ? " DEFAULT '{$haveDefault}'" : null) . ($autoIncrement ? " AUTO_INCREMENT" : null) . "," . PHP_EOL;
+		$this->tableSQL .= "`{$columnName}` {$type}{$len} " .
+			($isNull ? 'NULL' : 'NOT NULL') .
+			($haveDefault ? " DEFAULT '{$haveDefault}'" : null) .
+			($autoIncrement ? " AUTO_INCREMENT" : null) .
+			"," . PHP_EOL;
 		return $this;
 	}
 
