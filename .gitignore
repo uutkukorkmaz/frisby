@@ -1,4 +1,5 @@
 .idea
 !.gitignore
 /vendor/
+/logs/frisby.log
 .env

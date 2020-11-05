@@ -18,7 +18,7 @@ class Logger extends Singleton
 
 	protected function __construct()
 	{
-		$this->fileHandle = fopen(FRISBY_ROOT.$_ENV['FRISBY_LOG'], 'w');
+		$this->fileHandle = fopen(FRISBY_ROOT.$_ENV['FRISBY_LOG'], 'w+');
 	}
 
 
