@@ -15,7 +15,7 @@ use \PDO;
 class Database extends Singleton
 {
 	const DEFAULT_FETCH_MODE = PDO::FETCH_OBJ;
-	protected ?PDO $pdo;
+	public ?PDO $pdo;
 
 	const SQL_SelectAll = "SELECT * FROM %s";
 	const SQL_SelectByID = "SELECT * FROM %s WHERE id=?";
@@ -50,6 +50,9 @@ class Database extends Singleton
 		return $this->pdo->lastInsertId();
 	}
 
+	public function getTableName(string $table=""){
+		return self::$dbPrefix . $table;
+	}
 	private static function generateDSN(string $host, string $db, string $charset): string
 	{
 		return "mysql:host={$host};dbname={$db};charset={$charset};";

@@ -4,6 +4,7 @@
 namespace Frisby\Exception;
 
 
+use Frisby\Framework\Response;
 use Throwable;
 
 /**
@@ -24,6 +25,7 @@ class MethodNotAllowed extends \Exception
 	 */
 	public function __construct(string $method, Throwable $previous=null)
 	{
+		Response::getInstance()->setCode($this->code);
 		parent::__construct(sprintf($this->message,$method),$this->code,$previous);
 	}
 }

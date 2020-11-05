@@ -23,6 +23,7 @@ class Core
 
 	public Request $request;
 
+	public Response $response;
 	public Router $router;
 
 	public Container $container;
@@ -40,8 +41,10 @@ class Core
 		self::$instance = $this;
 		$this->container = new Container();
 		$this->request = Request::getInstance();
+		$this->response = Response::getInstance();
 		$this->router = $this->container->resolve(Router::class);
 		$this->initServices();
+
 	}
 
 
@@ -64,7 +67,8 @@ class Core
 		$this->whoops->register();
 	}
 
-	public function run(){
+	public function run()
+	{
 		$this->router->run();
 	}
 }

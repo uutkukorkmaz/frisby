@@ -51,9 +51,8 @@ class Router extends Singleton
 		$this->addRoute($route, $callback, self::METHOD_POST);
 	}
 
-	public function run()
+	private function getCurrentRoute()
 	{
-
 		$request = Request::getInstance();
 		$currentRoute = null;
 
@@ -64,16 +63,46 @@ class Router extends Singleton
 				continue;
 			}
 		}
+		$this->params = $params;
+		return $currentRoute;
+	}
+
+	private function initController($currentRoute)
+	{
+
+		$request = Request::getInstance();
+		$response = Response::getInstance();
+		$scope = $this->routes[$currentRoute];
+		if (array_key_exists($request->method, $scope)) {
+			if (is_string($scope[$request->method])):
+				$response->controller = new $scope[$request->method]();
+				$response->controller->render($this->params);
+				return;
+			endif;
+			if (is_array($scope[$request->method])):
+				$response->controller = new $scope[$request->method][0]();
+				$controllerMethod = $scope[$request->method][1];
+				$response->controller->$controllerMethod($this->params);
+				return;
+			endif;
+			if (is_callable($scope[$request->method])):
+				$response->controller = $scope[$request->method];
+				call_user_func($response->controller, $this->params);
+				return;
+			endif;
+		} else {
+			throw new MethodNotAllowed($request->method);
+		}
+	}
+
+	public function run()
+	{
+		$currentRoute = $this->getCurrentRoute();
 
 		if (is_null($currentRoute)) {
-			throw new InvalidRoute($request->uri);
+			throw new InvalidRoute(Request::getInstance()->uri);
 		} else {
-			$scope = $this->routes[$currentRoute];
-			 if(array_key_exists($request->method,$scope)){
-			 	// method allowed then check the controller...
-			 }else{
-				 throw new MethodNotAllowed($request->method);
-			 }
+			$this->initController($currentRoute);
 		}
 	}
 
