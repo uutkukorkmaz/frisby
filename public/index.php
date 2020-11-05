@@ -11,3 +11,5 @@ $Frisby = new Core();
 $Frisby->container->registerService([\Frisby\Service\Logger::class, \Frisby\Service\Database::class]);
 
 require_once FRISBY_ROOT . DIRECTORY_SEPARATOR . 'src/bootstrap.php';
+
+$Frisby->run();

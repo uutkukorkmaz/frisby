@@ -14,9 +14,16 @@ use Whoops\Run as Whoops;
  */
 class Core
 {
+
+	private const ERR_CODE_GROUP = 11000;
+
+	public const ERR_INVALID_ROUTE = self::ERR_CODE_GROUP + 1;
+
 	private static Core $instance;
 
 	public Request $request;
+
+	public Router $router;
 
 	public Container $container;
 
@@ -27,13 +34,13 @@ class Core
 	private Whoops $whoops;
 
 
-
 	public function __construct()
 	{
 		$this->initErrorHandler();
 		self::$instance = $this;
 		$this->container = new Container();
 		$this->request = Request::getInstance();
+		$this->router = $this->container->resolve(Router::class);
 		$this->initServices();
 	}
 
@@ -55,5 +62,9 @@ class Core
 		$this->whoops = new Whoops();
 		$this->whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 		$this->whoops->register();
+	}
+
+	public function run(){
+		$this->router->run();
 	}
 }
