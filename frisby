@@ -1,3 +1,4 @@
+#!/usr/bin/env php
 <?php
 $autoload = __DIR__.'/vendor/autoload.php';
 if(!file_exists($autoload)){
@@ -7,4 +8,16 @@ if(!file_exists($autoload)){
 }
 require_once $autoload;
 
-echo "done!";
+use Frisby\Framework\Migration;
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+if($argv[1] == "migrate"){
+    $m = new Migration();
+    $m->applyAllMigrations('up');
+}
+
+if($argv[1] == "rollback:all"){
+    $m = new Migration();
+    $m->applyAllMigrations('down');
+}

@@ -12,6 +12,8 @@ class Response extends Singleton
 {
 	public int $code = 200;
 
+	public $controller;
+
 	/**
 	 * @param int $code
 	 */

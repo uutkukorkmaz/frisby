@@ -25,13 +25,13 @@ class DefaultController extends \Frisby\Framework\Controller
 
 	function SchemaTest()
 	{
-		$builder = Schema::create('testTable', function (Schema\Builder $table) {
-			$table = $table->int('id', 11, true)
-				->varchar('name')
-				->text('description')
-				->setPrimaryKey('id')
-				->create();
-
-		});
+//		$builder = Schema::create('testTable', function (Schema\Builder $table) {
+//			$table = $table->int('id', 11, true)
+//				->varchar('name')
+//				->text('description')
+//				->setPrimaryKey('id')
+//				->create();
+//            echo "something";
+//		});
 	}
 }
