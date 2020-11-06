@@ -4,19 +4,28 @@
 namespace Frisby\Exception;
 
 
-use Frisby\Component\Core;
+use Frisby\Framework\Response;
 use Throwable;
 
+/**
+ * Class InvalidRoute
+ * @package Frisby\Exception
+ * @extends \Exception
+ */
 class MethodNotAllowed extends \Exception
 {
 
-    public $message = "Method Not Allowed";
-    public $code = 405;
+	protected $message = "Not Allowed Method %s";
+	protected $code = 405;
 
-    public function __construct(Core $core, Throwable $previous = null)
-    {
-        $_ENV['CORE_JSON'] = print_r($core,true);
-        parent::__construct($this->message, $this->code, $previous);
-
-    }
+	/**
+	 * InvalidRoute constructor.
+	 * @param string $method
+	 * @param Throwable|null $previous
+	 */
+	public function __construct(string $method, Throwable $previous=null)
+	{
+		Response::getInstance()->setCode($this->code);
+		parent::__construct(sprintf($this->message,$method),$this->code,$previous);
+	}
 }

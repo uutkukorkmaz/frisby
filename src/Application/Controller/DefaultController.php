@@ -4,19 +4,34 @@
 namespace Frisby\Application\Controller;
 
 
-use Frisby\Component\Controller;
-use Frisby\Component\Core;
+use Frisby\Framework\Core;
+use Frisby\Service\Schema;
 
-class DefaultController extends Controller
+/**
+ * Class DefaultController
+ * @package Frisby\Application\Controller
+ */
+class DefaultController extends \Frisby\Framework\Controller
 {
 
-	public function render(array $params)
+	/**
+	 * @inheritDoc
+	 */
+	function render(...$params)
 	{
-		//echo json_encode(Core::getInstance()->db::selectAll('activities'));
+		// TODO: Implement render() method.
+		echo "this is the default controller";
 	}
 
-	public function testMethod(){
-	    echo "test page";
+	function SchemaTest()
+	{
+		$builder = Schema::create('testTable', function (Schema\Builder $table) {
+			$table = $table->int('id', 11, true)
+				->varchar('name')
+				->text('description')
+				->setPrimaryKey('id')
+				->create();
 
-    }
+		});
+	}
 }

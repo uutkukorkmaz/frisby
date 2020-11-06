@@ -1,5 +1,5 @@
 .idea
 !.gitignore
-public/assets/img/Başlıksız-1.psd
 /vendor/
+/logs/frisby.log
 .env

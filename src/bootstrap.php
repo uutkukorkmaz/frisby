@@ -1,14 +1,9 @@
 <?php
 
-use Frisby\Component\Router;
-use Frisby\Application\Controller\DefaultController;
-$Frisby->route->pattern(':id', [Router::MUST_HAVE_NUMERIC]);
-$Frisby->route->pattern(':permalink', [
-	Router::MUST_HAVE_NUMERIC,
-	Router::MUST_HAVE_LOWERCASE,
-	Router::MUST_HAVE_SCORE,
-	Router::MUST_HAVE_UPPERCASE
-]);
+use Frisby\Framework\Router;
 
-$Frisby->route->get('/page/:permalink',[DefaultController::class]);
-$Frisby->route->get('/test',[DefaultController::class,'testMethod']);
+$Frisby->router->get('/',[\Frisby\Application\Controller\DefaultController::class,"SchemaTest"]);
+$Frisby->router->get('/test',function (){
+	echo "test in /test route";
+});
+$Frisby->router->get('/schema-tester',[\Frisby\Application\Controller\DefaultController::class,"SchemaTest"]);

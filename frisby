@@ -1,0 +1,10 @@
+<?php
+$autoload = __DIR__.'/vendor/autoload.php';
+if(!file_exists($autoload)){
+ echo "[FRISBY]: Unable to initialize Frisby Console Component!".PHP_EOL
+ .PHP_EOL."[FRISBY]: Updating composer...".PHP_EOL;
+ shell_exec("composer update");
+}
+require_once $autoload;
+
+echo "done!";

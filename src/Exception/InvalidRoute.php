@@ -4,23 +4,26 @@
 namespace Frisby\Exception;
 
 
-use Frisby\Component\Core;
-use Throwable;
+use Frisby\Framework\Core;
 
 /**
  * Class InvalidRoute
  * @package Frisby\Exception
+ * @extends \Exception
  */
 class InvalidRoute extends \Exception
 {
 
-    public $message = "Invalid Route";
-    public $code = 11001;
+	protected $message = "Invalid Route: %s";
+	protected $code = Core::ERR_INVALID_ROUTE;
 
-    public function __construct(Core $core, Throwable $previous = null)
-    {
-        $_ENV['CORE_JSON'] = print_r($core,true);
-        parent::__construct($this->message, $this->code, $previous);
-
-    }
+	/**
+	 * InvalidRoute constructor.
+	 * @param string $route
+	 * @param \Throwable|null $previous
+	 */
+	public function __construct(string $route, \Throwable $previous=null)
+	{
+		parent::__construct(sprintf($this->message,$route),$this->code,$previous);
+	}
 }
