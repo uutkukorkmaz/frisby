@@ -4,7 +4,7 @@
 namespace Frisby\Application\Controller;
 
 
-use Frisby\Framework\Core;
+//use Frisby\Framework\Core;
 use Frisby\Service\Schema;
 
 /**
