@@ -6,11 +6,25 @@ namespace Frisby\Framework;
 
 use Frisby\Service\Database;
 use Frisby\Service\FileSystem;
+use Frisby\Service\Schema;
 
 class Migration
 {
 
     public array $migrations;
+
+    public function __construct()
+    {
+        Schema::create('frisby_migrations', function (Schema\Builder $builder) {
+            $table = $builder->int('id', 11, true)->setPrimaryKey('id')
+                ->varchar('name')->setUniqueKey('name')
+                ->timestamp('executedAt')
+                ->create();
+            if (!$table->isCreated()) {
+                throw new \PDOException('Frisby Migrations table can not creatable' . PHP_EOL);
+            }
+        });
+    }
 
     public function getAllMigrations()
     {
@@ -55,25 +69,37 @@ class Migration
 
     private function executeMigration(array $migration, string $direction = 'up')
     {
-        echo "Migration: Performing migration {$migration['name']} on direction $direction" . PHP_EOL;
+        $cli = CommandLine::getInstance();
+        $cli->echo("Performing migration {$migration['name']} on direction $direction", get_class($this), $cli::FG_YELLOW);
         call_user_func_array([$migration['className'], strtolower($direction)], []);
-        Database::Insert('frisby_migrations', ["name" => $migration['name']]);
+        sleep(1);
+        Database::Insert('frisby_migrations', ["id" => $migration['id'], "name" => $migration['name']]);
+
+        if (Database::getInstance()->lastID() != 0) {
+            $cli->echo("Applied migration inserted to database", get_class($this), $cli::FG_GREEN);
+        } else {
+            $cli->echo("There is no migration to apply", get_class($this), $cli::FG_MAGENTA);
+        }
     }
 
     public function applyAllMigrations(string $direction)
     {
         $applied = 0;
         foreach ($this->getAllMigrations() as $migration) {
-            if (in_array($migration, $this->getAppliedMigrations())) continue;
+            if ($direction == 'up' && in_array($migration, $this->getAppliedMigrations())) continue;
             $this->executeMigration($migration, $direction);
             $applied++;
         }
-        return var_dump($applied);
+        if ($applied > 0) {
+            CommandLine::getInstance()->echo("$applied migration(s) successfully applied",$this,CommandLine::FG_GREEN);
+        } else {
+            CommandLine::getInstance()->echo("There is no migration to apply",$this,CommandLine::FG_MAGENTA);
+        }
     }
 
     public function getAppliedMigrations()
     {
-        $appliedMigrations = Database::SelectAll('frisby_migrations');
+        $appliedMigrations = Database::SelectAll('frisby_migrations') ?? [];
         $applied = [];
         foreach ($appliedMigrations as $item) {
             $applied[] = $this->getMigration($this->findMigrationFile($item->name));
