@@ -74,7 +74,7 @@ class Router extends Singleton
         $response = Response::getInstance();
         $request->interrupt();
         $response->controller = new $scope[$request->method]();
-        $response->controller->render($this->params);
+        $response->controller->base($this->params);
     }
 
     private function setControllerFromArray($scope)

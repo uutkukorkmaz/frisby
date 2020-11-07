@@ -9,7 +9,7 @@ class Command
 
     public string $name;
     public string $description;
-    public string $namespace="Frisby\\Framework\\Command\\";
+    public string $namespace="Frisby\\Command\\";
 
     /**
      * Command constructor.

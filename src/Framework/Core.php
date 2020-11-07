@@ -18,6 +18,7 @@ class Core
 	private const ERR_CODE_GROUP = 11000;
 
 	public const ERR_INVALID_ROUTE = self::ERR_CODE_GROUP + 1;
+	public const ERR_NO_SUCH_INPUT = self::ERR_CODE_GROUP + 2;
 
 	private static Core $instance;
 
@@ -64,7 +65,8 @@ class Core
 	private function initErrorHandler()
 	{
 		$this->whoops = new Whoops();
-		$this->whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+		$handler = $_ENV['ENVIRONMENT'] == "production" ? new \Whoops\Handler\PlainTextHandler() :new \Whoops\Handler\PrettyPageHandler;
+		$this->whoops->pushHandler($handler);
 		$this->whoops->register();
 	}
 

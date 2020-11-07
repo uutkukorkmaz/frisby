@@ -20,5 +20,5 @@ abstract class Controller
 	 * @param mixed ...$params
 	 * @return mixed
 	 */
-	abstract function render(...$params);
+	abstract public function base(...$params);
 }

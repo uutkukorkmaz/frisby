@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Frisby\Framework\Command;
+namespace Frisby\Command;
 
 
 use Frisby\Framework\CommandInterface;

@@ -3,6 +3,9 @@
 
 namespace Frisby\Application\Controller;
 
+
+use Frisby\Framework\Request;
+
 /**
  * Class DefaultController
  * @package Frisby\Application\Controller
@@ -10,14 +13,20 @@ namespace Frisby\Application\Controller;
 class DefaultController extends \Frisby\Framework\Controller
 {
 
-	/**
-	 * @inheritDoc
-	 */
-	function render(...$params)
-	{
-		// TODO: Implement render() method.
-		echo "this is the default controller";
-        var_dump($_GET);
-	}
+
+    public function base(...$params)
+    {
+        print_r(Request::getInstance()->validate([
+            "test" => [
+                "required",
+                "unique" => ["table" => "frisby_migrations", "column" => "name"],
+                "max" => "10"
+            ],
+            "pass" => [
+                "equals" => "deneme",
+                "required"
+            ]
+        ]));
+    }
 
 }
