@@ -72,7 +72,6 @@ class Migration
         $cli = CommandLine::getInstance();
         $cli->echo("Performing migration {$migration['name']} on direction $direction", get_class($this), $cli::FG_YELLOW);
         call_user_func_array([$migration['className'], strtolower($direction)], []);
-        sleep(1);
         Database::Insert('frisby_migrations', ["id" => $migration['id'], "name" => $migration['name']]);
 
         if (Database::getInstance()->lastID() != 0) {

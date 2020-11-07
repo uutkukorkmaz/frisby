@@ -40,8 +40,6 @@ class CommandLine extends Singleton
         rsort($argv);
         $this->argv = $argv;
         $this->requestedCommand = $this->argv[0];
-        unset($this->argv[0]);
-        sort($this->argv);
         if (array_key_exists($this->requestedCommand, $this->commands)) {
             $command = $this->commands[$this->requestedCommand];
             $class = $command->namespace.$command->name;

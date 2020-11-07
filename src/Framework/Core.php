@@ -37,6 +37,7 @@ class Core
 
 	public function __construct()
 	{
+	    unset($_GET['route']);
 		$this->initErrorHandler();
 		self::$instance = $this;
 		$this->container = new Container();

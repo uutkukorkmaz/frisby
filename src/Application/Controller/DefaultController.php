@@ -3,10 +3,6 @@
 
 namespace Frisby\Application\Controller;
 
-
-//use Frisby\Framework\Core;
-use Frisby\Service\Schema;
-
 /**
  * Class DefaultController
  * @package Frisby\Application\Controller
@@ -21,17 +17,7 @@ class DefaultController extends \Frisby\Framework\Controller
 	{
 		// TODO: Implement render() method.
 		echo "this is the default controller";
+        var_dump($_GET);
 	}
 
-	function SchemaTest()
-	{
-//		$builder = Schema::create('testTable', function (Schema\Builder $table) {
-//			$table = $table->int('id', 11, true)
-//				->varchar('name')
-//				->text('description')
-//				->setPrimaryKey('id')
-//				->create();
-//            echo "something";
-//		});
-	}
 }

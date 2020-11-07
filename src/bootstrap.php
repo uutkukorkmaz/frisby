@@ -11,13 +11,10 @@ use Frisby\Framework\Request;
 */
 $Frisby->request->setMiddlewares([
     \Frisby\Middlewares\TestMiddleware::class,
+    \Frisby\Middlewares\TrimInputsMiddleware::class,
 ]);
 
 /**
  * Let's define routes.
 */
-$Frisby->router->get('/',[\Frisby\Application\Controller\DefaultController::class,"SchemaTest"]);
-$Frisby->router->get('/test',function (){
-	echo "test in /test route";
-});
-$Frisby->router->get('/schema-tester',[\Frisby\Application\Controller\DefaultController::class,"SchemaTest"]);
+$Frisby->router->get('/',\Frisby\Application\Controller\DefaultController::class);
