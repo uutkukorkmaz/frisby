@@ -4,7 +4,13 @@
 namespace Frisby\Service;
 
 
-class FileSystem
+use Frisby\Framework\Singleton;
+
+/**
+ * Class FileSystem
+ * @package Frisby\Service
+ */
+class FileSystem extends Singleton
 {
     public string $path;
 

@@ -16,17 +16,19 @@ class DefaultController extends \Frisby\Framework\Controller
 
     public function base(...$params)
     {
-        print_r(Request::getInstance()->validate([
-            "test" => [
-                "required",
-                "unique" => ["table" => "frisby_migrations", "column" => "name"],
-                "max" => "10"
-            ],
-            "pass" => [
-                "equals" => "deneme",
-                "required"
-            ]
-        ]));
+
+//        $test = Request::getInstance()->validate([
+//            "test" => [
+//                "required",
+//                "unique" => ["table" => "frisby_migrations", "column" => "name"],
+//                "max" => "10"
+//            ],
+//            "pass" => [
+//                "equals" => "deneme",
+//                "required"
+//            ]
+//        ]);
+//
     }
 
 }
